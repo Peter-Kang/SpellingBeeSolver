@@ -46,7 +46,7 @@ void SpellingBeeSolverCore::ReadInDictionaryFromFile(void)
 			{//fiters words that do not have center letter
 				bool word_is_made_of_outer_layers = true;
 				for (int i = 0; i < line.size(); i++)
-				{
+				{//check if each letter is valid
 					word_is_made_of_outer_layers &= (m_OuterLetters.find(line[i]) != m_OuterLetters.end());
 					if (word_is_made_of_outer_layers == false)
 					{
