@@ -35,12 +35,12 @@ const std::unordered_set<char> SpellingBeeSolverCore::getOuterLetters(void)
 void SpellingBeeSolverCore::ReadInDictionaryFromFile(void)
 {
 	m_Dictionary = std::vector<std::string>();
-	std::ifstream myfile( DICTIONARY_FILENAME );
-	if (myfile.is_open()) {
-		while (myfile)
+	std::ifstream my_file( DICTIONARY_FILENAME );
+	if (my_file.is_open()) {
+		while (my_file)
 		{
 			std::string line;
-			std::getline(myfile, line);
+			std::getline(my_file, line);
 			ToLowerCaseInPlace(line);
 			if (line.find(m_CenterLetter) != std::string::npos)
 			{//fiters words that do not have center letter
