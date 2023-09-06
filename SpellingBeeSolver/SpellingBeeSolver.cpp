@@ -47,6 +47,7 @@ int main()
 
         SpellingBeeSolverCore solver = SpellingBeeSolverCore(center, list);
         solver.SolveWords();
+        std::cin.ignore();
     }
 
 }
