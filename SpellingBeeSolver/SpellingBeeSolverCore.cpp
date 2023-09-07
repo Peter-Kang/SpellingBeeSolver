@@ -42,7 +42,7 @@ void SpellingBeeSolverCore::ReadInDictionaryFromFile(void)
 			std::string line;
 			std::getline(my_file, line);
 			ToLowerCaseInPlace(line);
-			if (line.find(m_CenterLetter) != std::string::npos)
+			if (line.size() >= MIN_LETTER_COUNT && line.find(m_CenterLetter) != std::string::npos)
 			{//fiters words that do not have center letter
 				bool word_is_made_of_outer_layers = true;
 				for (int i = 0; i < line.size(); i++)
@@ -53,7 +53,7 @@ void SpellingBeeSolverCore::ReadInDictionaryFromFile(void)
 						break;
 					}
 				}
-				if (word_is_made_of_outer_layers && line.size() >= MIN_LETTER_COUNT)
+				if (word_is_made_of_outer_layers)
 				{
 					m_Dictionary.push_back(line);
 				}
