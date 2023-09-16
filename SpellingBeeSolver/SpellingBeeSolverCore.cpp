@@ -45,9 +45,10 @@ void SpellingBeeSolverCore::ReadInDictionaryFromFile(void)
 			if (line.size() >= MIN_LETTER_COUNT && line.find(m_CenterLetter) != std::string::npos)
 			{//fiters words that do not have center letter
 				bool word_is_made_of_outer_layers = true;
-				for (int i = 0; i < line.size(); i++)
-				{//check if each letter is valid
-					word_is_made_of_outer_layers &= (m_OuterLetters.find(line[i]) != m_OuterLetters.end());
+				std::string::const_iterator line_iter;
+				for (line_iter = line.begin(); line_iter != line.end(); line_iter++) 
+				{
+					word_is_made_of_outer_layers &= (m_OuterLetters.find(*line_iter) != m_OuterLetters.end());
 					if (word_is_made_of_outer_layers == false)
 					{
 						break;
@@ -65,9 +66,10 @@ void SpellingBeeSolverCore::ReadInDictionaryFromFile(void)
 //internal tool
 void SpellingBeeSolverCore::ToLowerCaseInPlace(std::string& value)
 {
-	for (int i = 0; i < value.size(); i++)
+	std::string::iterator value_iter;
+	for ( value_iter = value.begin(); value_iter != value.end(); value_iter++ ) 
 	{
-		value[i] = tolower(value[i]);
+		*value_iter = tolower(*value_iter);
 	}
 }
 
@@ -75,8 +77,9 @@ void SpellingBeeSolverCore::ToLowerCaseInPlace(std::string& value)
 void SpellingBeeSolverCore::SolveWords(void)
 {
 	std::cout << "Words:" << std::endl;
-	for ( int i=0; i < m_Dictionary.size(); i++ ) 
+	std::vector<std::string>::const_iterator words_iterator;
+	for(words_iterator = m_Dictionary.begin(); words_iterator < m_Dictionary.end(); words_iterator++)
 	{
-		std::cout << m_Dictionary[i] << std::endl;
+		std::cout << *words_iterator << std::endl;
 	}
 }
